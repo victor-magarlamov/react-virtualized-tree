@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Leaf node should not have expand button 1`] = `
+<div
+  className="rvtree_node"
+  style={
+    Object {
+      "height": 24,
+    }
+  }
+>
+  <div
+    className="rvtree_node_v-line"
+    style={
+      Object {
+        "height": "24px",
+      }
+    }
+  />
+  <div
+    className="rvtree_node_h-line"
+  />
+  <div
+    onClick={[Function]}
+  >
+    text
+  </div>
+</div>
+`;
+
+exports[`Root node when closed should have "rvtree_node_expand-close" class 1`] = `
+<div
+  className="rvtree_node"
+  style={
+    Object {
+      "height": 24,
+    }
+  }
+>
+  <div
+    className="rvtree_node_v-line"
+    style={
+      Object {
+        "height": "24px",
+      }
+    }
+  />
+  <div
+    className="rvtree_node_h-line"
+  />
+  <div
+    className="rvtree_node_expand rvtree_node_expand-close"
+    onClick={[Function]}
+  />
+  <div
+    onClick={[Function]}
+  >
+    text
+  </div>
+</div>
+`;
+
+exports[`Root node when opened should have "rvtree_node_expand-open" class 1`] = `
+<div
+  className="rvtree_node"
+  style={
+    Object {
+      "height": 24,
+    }
+  }
+>
+  <div
+    className="rvtree_node_v-line"
+    style={
+      Object {
+        "height": "24px",
+      }
+    }
+  />
+  <div
+    className="rvtree_node_h-line"
+  />
+  <div
+    className="rvtree_node_expand rvtree_node_expand-open"
+    onClick={[Function]}
+  />
+  <div
+    onClick={[Function]}
+  >
+    text
+  </div>
+</div>
+`;
