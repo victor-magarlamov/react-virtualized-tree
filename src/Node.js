@@ -2,7 +2,8 @@ export default class Node {
   static nodes = [];
   static FIRST_LEVEL = 1;
 
-  item = null;
+  _item = null;
+  _children = null;
 
   isLeaf = false;
 
@@ -11,18 +12,22 @@ export default class Node {
   level = Node.FIRST_LEVEL;
 
   constructor(item, isLeaf) {
-    this.item = item;
+    this._item = item;
     this.isLeaf = isLeaf;
 
     ['id', 'text', 'rootId'].forEach(prop => {
       Object.defineProperty(this, prop, {
-        get: () => this.item[prop],
+        get: () => this._item[prop],
       });
     });
   }
 
   get children() {
-    return Node.nodes.filter(item => item.rootId === this.id);
+    if (!this._children) {
+      this.collectChildren();
+    }
+
+    return this._children;
   }
 
   get isOpen() {
@@ -31,6 +36,41 @@ export default class Node {
 
   set isOpen(value) {
     this.open = value;
+  }
+
+  collectChildren() {
+    this._children = [];
+    let index;
+
+    let lo = 0;
+    let hi = Node.nodes.length - 1;
+
+    while (lo <= hi) {
+      let mid = Math.round(lo + (hi - lo) / 2);
+      const rootId = Node.nodes[mid].rootId;
+
+      if (rootId === null || this.id > rootId) {
+        lo = mid + 1;
+      } else if (this.id < rootId) {
+        hi = mid - 1;
+      } else {
+        index = mid;
+        break;
+      }
+    }
+
+    if (index) {
+      while (
+        Node.nodes[index - 1] &&
+        Node.nodes[index - 1].rootId === this.id
+      ) {
+        index -= 1;
+      }
+
+      while (Node.nodes[index] && Node.nodes[index].rootId === this.id) {
+        this._children.push(Node.nodes[index++]);
+      }
+    }
   }
 
   static setNodes(items) {
