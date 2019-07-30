@@ -3,13 +3,14 @@ export default class Node {
   static FIRST_LEVEL = 1;
 
   _item = null;
+
   _children = null;
 
-  isLeaf = false;
+  _leaf = false;
 
-  open = false;
+  _open = false;
 
-  level = Node.FIRST_LEVEL;
+  _level = Node.FIRST_LEVEL;
 
   constructor(item, isLeaf) {
     this._item = item;
@@ -30,16 +31,33 @@ export default class Node {
     return this._children;
   }
 
+  get level() {
+    return this._level;
+  }
+
   get isOpen() {
-    return this.open;
+    return this._open;
+  }
+
+  get isLeaf() {
+    return this._leaf;
+  }
+
+  set level(value) {
+    this._level = value;
   }
 
   set isOpen(value) {
-    this.open = value;
+    this._open = value;
+  }
+
+  set isLeaf(value) {
+    this._leaf = value;
   }
 
   collectChildren() {
     this._children = [];
+    
     let index;
 
     let lo = 0;
@@ -47,6 +65,7 @@ export default class Node {
 
     while (lo <= hi) {
       let mid = Math.round(lo + (hi - lo) / 2);
+      
       const rootId = Node.nodes[mid].rootId;
 
       if (rootId === null || this.id > rootId) {
