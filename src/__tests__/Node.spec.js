@@ -75,3 +75,25 @@ describe('Root', () => {
     expect(root.children.length).toBe(numberOfChildren);
   });
 });
+
+describe('setNodes', () => {
+  const items = [
+    {id: 1, text: 'node_1', rootId: 2},
+    {id: 2, text: 'node_2', rootId: null},
+    {id: 3, text: 'node_3', rootId: 5},
+    {id: 4, text: 'node_4', rootId: 2},
+    {id: 5, text: 'node_5', rootId: null},
+  ];
+  
+  beforeEach(() => {
+    Node.setNodes(items);
+  });
+
+  it('should have right order', () => {
+    expect(Node.nodes.map(n => n.rootId)).toEqual([null, null, 2, 2, 5]);
+  });
+
+  it('shold get right root nodes array', () => {
+    expect(Node.getRootNodes().map(n => n.rootId)).toEqual([null, null]);
+  });
+});

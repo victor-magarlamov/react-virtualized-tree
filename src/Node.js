@@ -34,10 +34,27 @@ export default class Node {
   }
 
   static setNodes(items) {
-    Node.nodes = items.map(item => {
-      const isLeaf = items.some(i => i.rootId === item.id) === false;
+    Node.nodes = items
+      .sort((i1, i2) => i1.rootId - i2.rootId)
+      .map(item => {
+        const isLeaf = items.some(i => i.rootId === item.id) === false;
 
-      return new Node(item, isLeaf);
-    });
+        return new Node(item, isLeaf);
+      });
+  }
+
+  static getRootNodes() {
+    const rootNodes = [];
+    let index = 0;
+
+    while (index < Node.nodes.length) {
+      if (Node.nodes[index].rootId !== null) {
+        break;
+      }
+
+      rootNodes.push(Node.nodes[index++]);
+    }
+
+    return rootNodes;
   }
 }

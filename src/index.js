@@ -16,7 +16,8 @@ export default class Tree extends Component {
 
     if (items) {
       Node.setNodes(items);
-      this.setState({ openedNodes: Node.nodes.filter(n => n.rootId === null) });
+
+      this.setState({ openedNodes: Node.getRootNodes() });
     }
   }
 
