@@ -108,7 +108,7 @@ export default class Tree extends Component {
 }
 
 Tree.defaultProps = {
-  width: 500,
+  width: 300,
   height: 400,
   rowHeight: 25,
   onRowClick: node => {
