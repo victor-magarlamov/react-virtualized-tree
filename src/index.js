@@ -60,6 +60,9 @@ export default class Tree extends Component {
 
   expandNode(currentNode, index, nodes) {
     const children = currentNode.children;
+    const isLastBranch =
+      currentNode.isLastBranch ||
+      (currentNode.isRoot && currentNode.isLastNode);
 
     return nodes.splice(
       index + 1,
@@ -67,6 +70,7 @@ export default class Tree extends Component {
       ...children.map(item => {
         item.level = currentNode.level + 1;
         item.isOpen = false;
+        item.isLastBranch = isLastBranch;
 
         return item;
       })

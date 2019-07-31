@@ -2,8 +2,6 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 export default class Row extends Component {
-  static ROW_CLASS = 'rvtree_node';
-
   static V_LINE_CLASS = 'rvtree_node_v-line';
 
   static H_LINE_CLASS = 'rvtree_node_h-line';
@@ -16,18 +14,45 @@ export default class Row extends Component {
 
   get lines() {
     const { height } = this.props.style;
-    const { level, id } = this.props.item;
-    const levels = Array.from(new Array(level).keys());
+    const { level, id, isLastNode, isLastBranch } = this.props.item;
 
-    const style = {
+    let numOfFullLines = level - 2;
+
+    let levels = [];
+
+    if (numOfFullLines > 0) {
+      levels = Array.from(new Array(numOfFullLines).keys());
+    }
+
+    const vLineStyle = {
       height: `${height}px`,
     };
 
+    const firstVLineStyle = { ...vLineStyle };
+    const lastVLineStyle = { ...vLineStyle };
+    if (isLastBranch) {
+      firstVLineStyle.background = 'none';
+    }
+
+    if (isLastNode) {
+      lastVLineStyle.height = `${height / 2}px`;
+    }
+
     return (
       <Fragment>
+        {level > 1 &&
+          <div className={Row.V_LINE_CLASS} style={firstVLineStyle} />
+        }
+
         {levels.map(i => (
-          <div key={`${id}-${i}`} className={Row.V_LINE_CLASS} style={style} />
+          <div
+            key={`${id}-${i}`}
+            className={Row.V_LINE_CLASS}
+            style={vLineStyle}
+          />
         ))}
+
+        <div className={Row.V_LINE_CLASS} style={lastVLineStyle} />
 
         <div className={Row.H_LINE_CLASS} />
       </Fragment>
@@ -73,7 +98,7 @@ export default class Row extends Component {
     const { style } = this.props;
 
     return (
-      <div className={Row.ROW_CLASS} style={style}>
+      <div className="rvtree_node" style={style}>
         {this.lines}
         {this.expandButton}
         {this.label}
@@ -90,9 +115,11 @@ Row.propTypes = {
   item: PropTypes.shape({
     id: PropTypes.number,
     text: PropTypes.string,
-    rootId: PropTypes.number,
-    isLeaf: PropTypes.bool,
     level: PropTypes.number,
+    isLeaf: PropTypes.bool,
     isOpen: PropTypes.bool,
+    isLastNode: PropTypes.bool,
+    isLastBranch: PropTypes.bool,
+    isRoot: PropTypes.bool,
   }).isRequired,
 };

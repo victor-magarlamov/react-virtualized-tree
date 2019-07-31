@@ -2,23 +2,24 @@ export default class Node {
   static nodes = [];
   static FIRST_LEVEL = 1;
 
-  _item = null;
-
   _children = null;
 
   _leaf = false;
+
+  _lastNode = false;
+
+  _lastBranch = false;
 
   _open = false;
 
   _level = Node.FIRST_LEVEL;
 
   constructor(item, isLeaf) {
-    this._item = item;
     this.isLeaf = isLeaf;
 
     ['id', 'text', 'rootId'].forEach(prop => {
       Object.defineProperty(this, prop, {
-        get: () => this._item[prop],
+        get: () => item[prop],
       });
     });
   }
@@ -43,6 +44,18 @@ export default class Node {
     return this._leaf;
   }
 
+  get isLastNode() {
+    return this._lastNode;
+  }
+
+  get isLastBranch() {
+    return this._lastBranch;
+  }
+
+  get isRoot() {
+    return this.rootId === null;
+  }
+
   set level(value) {
     this._level = value;
   }
@@ -55,9 +68,16 @@ export default class Node {
     this._leaf = value;
   }
 
+  set isLastNode(value) {
+    this._lastNode = value;
+  }
+
+  set isLastBranch(value) {
+    this._lastBranch = value;
+  }
+
   collectChildren() {
     this._children = [];
-    
     let index;
 
     let lo = 0;
@@ -65,7 +85,6 @@ export default class Node {
 
     while (lo <= hi) {
       let mid = Math.round(lo + (hi - lo) / 2);
-      
       const rootId = Node.nodes[mid].rootId;
 
       if (rootId === null || this.id > rootId) {
@@ -89,6 +108,8 @@ export default class Node {
       while (Node.nodes[index] && Node.nodes[index].rootId === this.id) {
         this._children.push(Node.nodes[index++]);
       }
+
+      this._children[this._children.length - 1].isLastNode = true;
     }
   }
 
@@ -107,12 +128,14 @@ export default class Node {
     let index = 0;
 
     while (index < Node.nodes.length) {
-      if (Node.nodes[index].rootId !== null) {
+      if (!Node.nodes[index].isRoot) {
         break;
       }
 
       rootNodes.push(Node.nodes[index++]);
     }
+
+    rootNodes[rootNodes.length - 1].isLastNode = true;
 
     return rootNodes;
   }
