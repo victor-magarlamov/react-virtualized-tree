@@ -29,7 +29,7 @@ describe('Root node', () => {
 
     let row = component.toJSON();
 
-    it('should have "rvtree_node_expand-close" class', () => {
+    it('has "rvtree_node_expand-close" class', () => {
       expect(row).toMatchSnapshot();
     });
   });
@@ -43,7 +43,7 @@ describe('Root node', () => {
 
     let row = component.toJSON();
 
-    it('should have "rvtree_node_expand-open" class', () => {
+    it('has "rvtree_node_expand-open" class', () => {
       expect(row).toMatchSnapshot();
     });
   });
@@ -56,7 +56,7 @@ describe('Leaf node', () => {
 
   let row = component.toJSON();
 
-  it('should not have expand button', () => {
+  it('has not expand button', () => {
     expect(row).toMatchSnapshot();
   });
 });

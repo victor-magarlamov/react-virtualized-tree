@@ -14,17 +14,17 @@ describe('Node', () => {
     instance = new Node(item, false);
   });
 
-  it('should have right properties', () => {
+  it('has right properties', () => {
     ['id', 'text', 'rootId'].forEach(prop => {
       expect(instance.hasOwnProperty(prop)).toBeTruthy();
     });
   });
 
-  it('should have right init value of level property', () => {
+  it('has right init value of level property', () => {
     expect(instance.level).toEqual(Node.FIRST_LEVEL);
   });
 
-  it('should have right init value of open property', () => {
+  it('has right init value of open property', () => {
     expect(instance.isOpen).toBe(false);
   });
 });
@@ -37,11 +37,11 @@ describe('Leaf', () => {
     Node.setNodes([]);
   });
 
-  it('should have right value of isLeaf property', () => {
+  it('has right value of isLeaf property', () => {
     expect(leaf.isLeaf).toBe(false);
   });
 
-  it('should not have any children', () => {
+  it('has not any children', () => {
     expect(leaf.children.length).toBe(0);
   });
 });
@@ -67,11 +67,11 @@ describe('Root', () => {
     Node.setNodes(nodes);
   });
 
-  it('should have right value of isLeaf property', () => {
+  it('has right value of isLeaf property', () => {
     expect(root.isLeaf).toBe(true);
   });
   
-  it('should have children', () => {
+  it('has children', () => {
     expect(root.children.length).toBe(numberOfChildren);
   });
 });
@@ -89,11 +89,11 @@ describe('setNodes', () => {
     Node.setNodes(items);
   });
 
-  it('should have right order', () => {
+  it('has right order', () => {
     expect(Node.nodes.map(n => n.rootId)).toEqual([null, null, 2, 2, 5]);
   });
 
-  it('shold get right root nodes array', () => {
+  it('gets right root nodes array', () => {
     expect(Node.getRootNodes().map(n => n.rootId)).toEqual([null, null]);
   });
 });
