@@ -7,6 +7,10 @@ A virtualized tree view react component based on [react-window](https://github.c
 
 npm i --save react-virtualized-tree-view
 
+## Usage
+
+import Tree from 'react-virtualized-tree-view';
+
 ## API
 |name|type|default|description|
 |-----|---|--------|----|
