@@ -1,5 +1,5 @@
 {
-  "name": "react-virtualized-tree",
+  "name": "react-virtualized-tree-view",
   "version": "1.0.0",
   "license": "ISC",
   "description": "React component for virtualized tree",
@@ -22,7 +22,6 @@
     "windowed",
     "tree"
   ],
-  "private": true,
   "main": "build/index.js",
   "scripts": {
     "prettier": "prettier --write '**/*.{js,json,css}'",

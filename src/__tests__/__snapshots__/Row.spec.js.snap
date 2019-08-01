@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Leaf node should not have expand button 1`] = `
+exports[`Leaf node has not expand button 1`] = `
 <div
   className="rvtree_node"
   style={
@@ -28,7 +28,7 @@ exports[`Leaf node should not have expand button 1`] = `
 </div>
 `;
 
-exports[`Root node when closed should have "rvtree_node_expand-close" class 1`] = `
+exports[`Root node when closed has "rvtree_node_expand-close" class 1`] = `
 <div
   className="rvtree_node"
   style={
@@ -60,7 +60,7 @@ exports[`Root node when closed should have "rvtree_node_expand-close" class 1`] 
 </div>
 `;
 
-exports[`Root node when opened should have "rvtree_node_expand-open" class 1`] = `
+exports[`Root node when opened has "rvtree_node_expand-open" class 1`] = `
 <div
   className="rvtree_node"
   style={
