@@ -37,3 +37,9 @@
   background: url('data:image/svg+xml;charset=utf8,%3Csvg%20viewBox%3D%220%200%2012%2012%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2212%22%20height%3D%2212%22%20fill%3D%22white%22%20stroke%3D%22gray%22%20stroke-width%3D%221%22%2F%3E%3Cline%20x1%3D%223%22%20y1%3D%226%22%20x2%3D%229%22%20y2%3D%226%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%2F%3E%3Cline%20x1%3D%226%22%20y1%3D%223%22%20x2%3D%226%22%20y2%3D%229%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
     center center / 12px 12px no-repeat;
 }
+
+.rvtree_node_checkbox {
+  float: left;
+  margin-top: 6px;
+  margin-right: 6px;
+}

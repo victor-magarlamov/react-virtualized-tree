@@ -76,6 +76,23 @@ export default class Row extends Component {
     );
   }
 
+  get checkbox() {
+    const {onCheck, item} = this.props;
+
+    if (!onCheck) {
+      return null;
+    }
+
+    return (
+      <input
+        className="rvtree_node_checkbox"
+        type="checkbox"
+        name={`item_${item.id}`}
+        value={false}
+        onChange={this.handleCheckboxChanged} />
+    );
+  }
+
   get label() {
     const { item } = this.props;
 
@@ -91,8 +108,16 @@ export default class Row extends Component {
   handleClick = () => {
     const { item, onClick } = this.props;
 
-    onClick(item);
+    if (!onClick) return;
+
+    onClick(item.id);
   };
+
+  handleCheckboxChanged = (e) => {
+    const { item, onCheck } = this.props;
+    
+    onCheck(item.id, e.target.checked);
+  }
 
   render() {
     const { style } = this.props;
@@ -101,6 +126,7 @@ export default class Row extends Component {
       <div className="rvtree_node" style={style}>
         {this.lines}
         {this.expandButton}
+        {this.checkbox}
         {this.label}
       </div>
     );
@@ -109,9 +135,10 @@ export default class Row extends Component {
 
 Row.propTypes = {
   style: PropTypes.object.isRequired,
-  onClick: PropTypes.func.isRequired,
   onExpand: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
+  onClick: PropTypes.func,
+  onCheck: PropTypes.func,
   item: PropTypes.shape({
     id: PropTypes.number,
     text: PropTypes.string,

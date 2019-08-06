@@ -33,15 +33,12 @@ export default class Tree extends Component {
         key={node.id}
         index={index}
         item={node}
-        onClick={this.handleRowClick}
         onExpand={this.handleExpand}
+        onClick={this.props.onRowClick}
+        onCheck={this.props.onRowCheck}
         style={style}
       />
     );
-  };
-
-  handleRowClick = node => {
-    this.props.onRowClick(node);
   };
 
   handleExpand = (node, index) => {
@@ -111,9 +108,6 @@ Tree.defaultProps = {
   width: 300,
   height: 400,
   rowHeight: 25,
-  onRowClick: node => {
-    return node;
-  },
 };
 
 Tree.propTypes = {
@@ -128,4 +122,5 @@ Tree.propTypes = {
   height: PropTypes.number,
   rowHeight: PropTypes.number,
   onRowClick: PropTypes.func,
+  onRowCheck: PropTypes.func,
 };
