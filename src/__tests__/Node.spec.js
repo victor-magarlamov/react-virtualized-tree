@@ -9,7 +9,7 @@ const item = {
 
 describe('Node', () => {
   let instance;
-  
+
   beforeEach(() => {
     instance = new Node(item, false);
   });
@@ -30,7 +30,6 @@ describe('Node', () => {
 });
 
 describe('Leaf', () => {
-  
   const leaf = new Node(item, false);
 
   beforeEach(() => {
@@ -48,19 +47,19 @@ describe('Leaf', () => {
 
 describe('Root', () => {
   const root = new Node(item, true);
-  const numberOfChildren = Math.floor((Math.random() * 10) + 1);
-  
+  const numberOfChildren = Math.floor(Math.random() * 10 + 1);
+
   beforeEach(() => {
     const nodes = [];
 
     for (
       let i = 0, ii = numberOfChildren + 1;
       i < numberOfChildren;
-      ++i, ++ii) 
-    {
+      ++i, ++ii
+    ) {
       nodes.push(
-        new Node({id: i + 1, text: 't', rootId: root.id }, true),
-        new Node({id: ii, text: 't', rootId: root.id + 1}, true),
+        new Node({ id: i + 1, text: 't', rootId: root.id }, true),
+        new Node({ id: ii, text: 't', rootId: root.id + 1 }, true)
       );
     }
 
@@ -70,7 +69,7 @@ describe('Root', () => {
   it('has right value of isLeaf property', () => {
     expect(root.isLeaf).toBe(true);
   });
-  
+
   it('has children', () => {
     expect(root.children.length).toBe(numberOfChildren);
   });
@@ -78,13 +77,13 @@ describe('Root', () => {
 
 describe('setNodes', () => {
   const items = [
-    {id: 1, text: 'node_1', rootId: 2},
-    {id: 2, text: 'node_2', rootId: null},
-    {id: 3, text: 'node_3', rootId: 5},
-    {id: 4, text: 'node_4', rootId: 2},
-    {id: 5, text: 'node_5', rootId: null},
+    { id: 1, text: 'node_1', rootId: 2 },
+    { id: 2, text: 'node_2', rootId: null },
+    { id: 3, text: 'node_3', rootId: 5 },
+    { id: 4, text: 'node_4', rootId: 2 },
+    { id: 5, text: 'node_5', rootId: null },
   ];
-  
+
   beforeEach(() => {
     Node.setNodes(items);
   });

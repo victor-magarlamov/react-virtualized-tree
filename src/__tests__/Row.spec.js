@@ -2,7 +2,7 @@ import React from 'react';
 import Row from '../Row';
 import Node from '../Node';
 import renderer from 'react-test-renderer';
-  
+
 const item = {
   id: 1,
   text: 'text',
@@ -23,9 +23,7 @@ const leafNode = new Node(item, true);
 
 describe('Root node', () => {
   describe('when closed', () => {
-    const component = renderer.create(
-      <Row {...props} item={rootNode} />
-    );
+    const component = renderer.create(<Row {...props} item={rootNode} />);
 
     let row = component.toJSON();
 
@@ -33,13 +31,11 @@ describe('Root node', () => {
       expect(row).toMatchSnapshot();
     });
   });
-  
+
   describe('when opened', () => {
     rootNode.isOpen = true;
 
-    const component = renderer.create(
-      <Row {...props} item={rootNode} />
-    );
+    const component = renderer.create(<Row {...props} item={rootNode} />);
 
     let row = component.toJSON();
 
@@ -47,12 +43,22 @@ describe('Root node', () => {
       expect(row).toMatchSnapshot();
     });
   });
+  
+  describe('when checkable', () => {
+    rootNode.isOpen = true;
+
+    const component = renderer.create(<Row {...props} item={rootNode} onRowCheck={() => {}} />);
+
+    let row = component.toJSON();
+
+    it('has checkbox', () => {
+      expect(row).toMatchSnapshot();
+    });
+  });
 });
 
 describe('Leaf node', () => {
-  const component = renderer.create(
-    <Row {...props} item={leafNode} />
-  );
+  const component = renderer.create(<Row {...props} item={leafNode} />);
 
   let row = component.toJSON();
 

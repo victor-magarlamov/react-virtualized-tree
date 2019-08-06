@@ -40,9 +40,9 @@ export default class Row extends Component {
 
     return (
       <Fragment>
-        {level > 1 &&
+        {level > 1 && (
           <div className={Row.V_LINE_CLASS} style={firstVLineStyle} />
-        }
+        )}
 
         {levels.map(i => (
           <div
@@ -77,7 +77,7 @@ export default class Row extends Component {
   }
 
   get checkbox() {
-    const {onCheck, item} = this.props;
+    const { onCheck, item } = this.props;
 
     if (!onCheck) {
       return null;
@@ -89,7 +89,8 @@ export default class Row extends Component {
         type="checkbox"
         name={`item_${item.id}`}
         value={false}
-        onChange={this.handleCheckboxChanged} />
+        onChange={this.handleCheckboxChanged}
+      />
     );
   }
 
@@ -113,11 +114,11 @@ export default class Row extends Component {
     onClick(item.id);
   };
 
-  handleCheckboxChanged = (e) => {
+  handleCheckboxChanged = e => {
     const { item, onCheck } = this.props;
-    
+
     onCheck(item.id, e.target.checked);
-  }
+  };
 
   render() {
     const { style } = this.props;
